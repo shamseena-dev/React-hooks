@@ -6,7 +6,6 @@ function AddTodo({addTodo}){
     const handleSubmit = (e) => {
       e.preventDefault();
       addTodo(task);
-      console.log("bfr",task);
       setTask('')
     };
     return (
