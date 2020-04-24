@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import AddTodo from './AddTodo';
 
 function Todos({todos}){
-  const todosList = todos.length ? (todos.map(todo =>
-    <Todo key={todo.id} todo={todo} />
+  const todosList = todos.length ? (todos.map((todo,index) =>
+    <Todo key={index} todo={todo} />
   )) :
   (<p> No more Todos left!!</p>);
   return(
@@ -22,23 +23,26 @@ function Todo({todo}){
 function App() {
   const [todos,setTodos] = useState([
     {
-      id: 1,
       task: "Do Exercises"
     },
     {
-      id: 2,
-      task: "Practise React courses"
+        task: "Practise React courses"
     },
     {
-      id: 3,
-      task: "Build Project"
+        task: "Build Project"
     }
   ])
+  const addTodoFn = (todo) =>{
+     const newTodos = [...todos, { task: todo }];
+    setTodos(newTodos)
+    console.log(todos[todos.length -1].task);
+  }
   return (
     <div className="container center">
         <div className="card blue-grey">
         <h2 className="center white-text"> Todo-list Managing App</h2>
         <Todos todos={todos} />
+        <AddTodo addTodo={addTodoFn}/>
         </div>
     </div>
   );
