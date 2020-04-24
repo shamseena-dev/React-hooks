@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 
 function Todos({todos}){
+  const todosList = todos.length ? (todos.map(todo =>
+    <Todo key={todo.id} todo={todo} />
+  )) :
+  (<p> No more Todos left!!</p>);
   return(
-  todos.map(todo => (
-    <Todo todo={todo}/>
-  ))
-  )
-}
+      <div className="collection center">
+          {todosList}
+      </div>
+  )}
+
 function Todo({todo}){
   return(
-    <div key={todo.id}>
-      <p>{todo.id}</p>
-      <p>{todo.task}</p>
-    </div>
-  )
+    <div className ="collection-item blue-text">
+      <span>{todo.task}</span>
+      <button  className="btn-floating btn-large waves-effect waves-light red btn-small secondary-content" > X</button>
+    </div>)
 }
+
 function App() {
   const [todos,setTodos] = useState([
     {
